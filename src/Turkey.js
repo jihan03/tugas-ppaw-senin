@@ -15,11 +15,12 @@ class Turkey extends Component {
         .then(parsedJSON => parsedJSON.results.map(data => (
           {
             id: `${data.id.name}`,
-            firstName: `${data.name.first}`,
-            lastName: `${data.name.last}`,
-            location: `${data.location.state}, ${data.nat}`,
+            Name: `${data.name.title} ${data.name.first} ${data.name.last} `,
+            gender: ` ${data.gender} `,
+            location: `${data.location.street.number}, ${data.location.street.name}, ${data.location.city}, ${data.location.state}, ${data.location.country} ` , 
+            age: ` ${data.dob.age} `,
+            phone: ` ${data.phone} `,
             thumbnail: `${data.picture.large}`,
-
           }
         )))
         .then(items => this.setState({
@@ -36,14 +37,20 @@ class Turkey extends Component {
             <h2>Random User</h2>
             {
               items.length > 0 ? items.map(item => {
-              const {id, firstName, lastName, location, thumbnail} = item;
+                const { id, Name, gender, location, age, phone, thumbnail} = item;
                return (
 
                <div key={id} className="bgCircle">
-               <center><img src={thumbnail} alt={firstName} className="circle"/> </center><br />
+               <center><img src={thumbnail} alt={Name} className="circle"/> </center><br />
                <div className="ctr">
-                  {firstName} {lastName}<br />
-                  {location}
+                     {Name}<br />
+                     {gender} <br />
+                     <br />
+                     {location} < br />
+                     < br />
+                     {age} <br />
+                     <br />
+                     {phone} 
                 </div>
 
               </div>
